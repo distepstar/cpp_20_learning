@@ -5,32 +5,34 @@
 #define CYLINDER_H
 
 class Cylinder {
+
 private:
+  // std::string *cylinder_name;
   double base_radius{1.0};
   double height{1.0};
 
 public:
-  Cylinder() {
-    base_radius = 2.0;
-    height = 2.0;
-  }
+  // constructor
+  Cylinder() = default;
+  Cylinder(double radius_param, double height_param);
 
-  Cylinder(double radius_param, double height_param) {
-    base_radius = radius_param;
-    height = height_param;
-  }
+  // Destructor
+  // ~Cylinder();
+  // Can also declare and implement in here: syntax commented out below:
+  // ~Cylinder(){
+  //   delete cylinder_name;
+  //   std::cout << "Cylinder destructor called for " << cylinder_name << "\n";
+  // }
 
-  double get_base_radius() { return base_radius; }
+  double get_base_radius();
 
-  void set_base_radius(double radius_param) { base_radius = radius_param; }
+  void set_base_radius(double radius_param);
 
-  double get_height() { return height; }
+  double get_height();
 
-  void set_height(double height_param) { height = height_param; }
+  void set_height(double height_param);
 
-  double volume() {
-    return std::numbers::pi * base_radius * base_radius * height;
-  }
+  double volume();
 };
 
 #endif // !CYLINDER_H
