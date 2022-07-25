@@ -10,7 +10,7 @@ public:
   Shape(const std::string_view description_param);
   Shape(const Shape &shape);
   // Destructor
-  ~Shape();
+  virtual ~Shape();
 
   // Methods
   // virtual -> dynamic binding

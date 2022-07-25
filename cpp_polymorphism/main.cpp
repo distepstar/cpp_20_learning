@@ -2,6 +2,7 @@
 #include "library.h"
 #include "oval.h"
 #include "shape.h"
+#include <memory>
 
 // Pointer parameter
 void draw_shape(const Shape *s) { s->draw(); }
@@ -69,6 +70,7 @@ int main(int argc, char **argv) {
     draw_shape(s_ptr);
   }
 
+  // More memory will be consumed in polymorphism classes
   std::cout << "\n";
   std::cout << "Size of classes\n";
   std::cout << "sizeof(Shape): " << sizeof(Shape) << "\n";
@@ -81,6 +83,46 @@ int main(int argc, char **argv) {
   Shape shape2 = circle1;
   std::cout << "sizeof(shape2): " << sizeof(shape2) << "\n";
   draw_shape(&shape2); // it will become draw from shape
+
+  // Object slice off
+  std::cout << "\n";
+  std::cout << "Object slice off\n";
+  Circle circle_new_1(7.2, "circle_new_1");
+  Oval oval_new_1(13.1, 1.2, "oval_new_1");
+  Circle circle_new_2(7.2, "circle_new_2");
+  Oval oval_new_2(13.1, 1.2, "oval_new_2");
+  Circle circle_new_3(7.2, "circle_new_3");
+  Oval oval_new_3(13.1, 1.2, "oval_new_3");
+
+  Shape shapes1[]{circle_new_1, oval_new_1,   circle_new_2,
+                  oval_new_2,   circle_new_3, oval_new_3};
+
+  for (Shape s : shapes1) {
+    std::cout << "Inside Array, sizeof(s): " << sizeof(s) << "\n";
+    Shape *shape_ptr = &s;
+    shape_ptr->draw();
+    std::cout << "\n";
+  }
+
+  // This wont work, we cant store references in a collections
+  // Shape &shapes2[] {circle_new_1, oval_new_1,   circle_new_2,
+  //                    oval_new_2,   circle_new_3, oval_new_3};
+  // Pointer will work
+  Shape *shapes3[]{&circle_new_1, &oval_new_1,   &circle_new_2,
+                   &oval_new_2,   &circle_new_3, &oval_new_3};
+
+  // Smart pointer array
+  std::shared_ptr<Shape> shapes4[]{std::make_shared<Circle>(12.2, "Circle4"),
+                                   std::make_shared<Oval>(10.0, 20.0, "Oval4")};
+  std::cout << "\n";
+  std::cout << "Object slice off\n";
+
+  for (auto &s : shapes4) {
+    s->draw();
+  }
+
+  oval_new_1.draw(22); // Work
+  // shapes3[1]->draw(22); // Not work
 
   std::cout << "\n";
 

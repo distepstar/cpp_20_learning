@@ -10,9 +10,9 @@ public:
   Circle(double radius, const std::string_view description);
   Circle(const Circle &circle);
 
-  ~Circle();
+  virtual ~Circle();
 
-  virtual void draw() const;
+  virtual void draw() const override;
 
 private:
   double m_radius{0.0};

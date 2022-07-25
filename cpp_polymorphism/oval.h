@@ -10,9 +10,12 @@ public:
   Oval(double x_radius, double y_radius, const std::string_view description);
   Oval(const Oval &oval);
 
-  ~Oval();
+  virtual ~Oval();
 
-  virtual void draw() const;
+  // overriding method
+  virtual void draw() const override;
+  // overloading method
+  virtual void draw(int color_depth) const;
 
 protected:
   double get_x_rad() const;
