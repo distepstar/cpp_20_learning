@@ -9,11 +9,10 @@ public:
   Animal() = default;
   Animal(const std::string &desc);
   virtual ~Animal();
-
   virtual void breathe() const;
 
 protected:
-  std::string m_desc;
+  std::string m_desc{""};
 };
 
 #endif // !ANIMAL_H

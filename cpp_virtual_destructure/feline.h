@@ -12,7 +12,7 @@ public:
 
   virtual void run() const;
 
-  std::string m_fur_style;
+  std::string m_fur_style{""};
 };
 
 #endif // !FELINE_H

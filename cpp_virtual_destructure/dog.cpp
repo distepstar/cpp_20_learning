@@ -1,4 +1,3 @@
-
 #include "dog.h"
 
 void Dog::bark() const { std::cout << "Dog::bark called: Woof!\n"; }

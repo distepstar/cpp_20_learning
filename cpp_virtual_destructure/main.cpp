@@ -16,6 +16,8 @@ int main(int argc, char **argv) {
 
   // Base class reference
   Animal *animal2 = new Feline("stripes", "feline1");
+  animal2->breathe();
+
   Feline feline2("stripes", "feline2");
   Animal &animal_ref = feline2;
 
@@ -35,6 +37,9 @@ int main(int argc, char **argv) {
   } else {
     std::cout << "Couldn't cast to Feline pointer, Sorry\n";
   }
+
+  // must be a pointer or reference class -> stored in heap
+  // std::string *my_string{dynamic_cast<std::string *>(&value)};
 
   return 0;
 }
